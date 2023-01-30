@@ -16,5 +16,7 @@ jobs:
         run: echo ${{ github.sha }} > release_artifact.txt
       - name: Test artifact
         run: cat release_artifact.txt
-#      - name: Release
-#        uses: softprops/action-gh-release@v1
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: release_artifact.txt
