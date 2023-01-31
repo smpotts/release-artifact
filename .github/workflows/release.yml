@@ -33,7 +33,7 @@ jobs:
         uses: peter-evans/create-pull-request@v4
         with:
           branch: test-pr
-          title: 'this is a pull request from the other repo'
+          title: 'this is a pull request that was auto-created by GitHub actions'
           commit-message: 'Test PR'
           delete-branch: true
-          draft: true
+          draft: false
