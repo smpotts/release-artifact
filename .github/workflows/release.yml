@@ -19,6 +19,7 @@ jobs:
         run: echo ${{ github.sha }} > release_artifact.txt
       - name: Test artifact
         run: cat release_artifact.txt
+      # https://github.com/softprops/action-gh-release
       - name: Release
         uses: softprops/action-gh-release@v1
         env:
@@ -27,3 +28,12 @@ jobs:
           tag_name: ${{ github.ref }}
           name: Release ${{ github.ref }}
           files: release_artifact.txt
+      # https://github.com/peter-evans/create-pull-request
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          branch: test-pr
+          title: 'this is a pull request from the other repo'
+          commit-message: 'Test PR'
+          delete-branch: true
+          draft: true
