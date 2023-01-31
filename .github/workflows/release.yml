@@ -29,11 +29,18 @@ jobs:
           name: Release ${{ github.ref }}
           files: release_artifact.txt
       # https://github.com/peter-evans/create-pull-request
+#      - name: Create Pull Request
+#        uses: peter-evans/create-pull-request@v4
+#        with:
+#          branch: test-pr
+#          title: 'this is a pull request that was auto-created by GitHub actions'
+#          commit-message: 'Test PR'
+#          delete-branch: true
+#          draft: false
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
+        uses: repo-sync/pull-request@v2
         with:
-          branch: test-pr
-          title: 'this is a pull request that was auto-created by GitHub actions'
-          commit-message: 'Test PR'
-          delete-branch: true
-          draft: false
+          destination_branch: "main"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pr_draft: false
+          pr_allow_empty: true
